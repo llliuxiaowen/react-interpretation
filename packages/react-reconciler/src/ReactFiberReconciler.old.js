@@ -265,6 +265,7 @@ export function updateContainer(
       warnIfNotScopedWithMatchingAct(current);
     }
   }
+  // React 17 中不再使用 expirationTime，而是用 lane 取代
   const lane = requestUpdateLane(current);
 
   if (enableSchedulingProfiler) {

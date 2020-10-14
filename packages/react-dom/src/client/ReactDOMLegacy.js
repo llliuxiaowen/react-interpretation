@@ -176,7 +176,7 @@ function legacyRenderSubtreeIntoContainer(
   parentComponent: ?React$Component<any, any>,
   children: ReactNodeList,
   container: Container,
-  forceHydrate: boolean,
+  forceHydrate: boolean, // 作用？
   callback: ?Function,
 ) {
   if (__DEV__) {
@@ -194,7 +194,7 @@ function legacyRenderSubtreeIntoContainer(
       container,
       forceHydrate,
     );
-    fiberRoot = root._internalRoot;
+    fiberRoot = root._internalRoot; // 作用？
     if (typeof callback === 'function') {
       const originalCallback = callback;
       callback = function() {
@@ -203,7 +203,9 @@ function legacyRenderSubtreeIntoContainer(
       };
     }
     // Initial mount should not be batched.
+    // 理解为初始化 mount 需要立即更新
     unbatchedUpdates(() => {
+      // 参数的值依次为：element, fiberRoot, null, callback
       updateContainer(children, fiberRoot, parentComponent, callback);
     });
   } else {
@@ -293,7 +295,7 @@ export function render(
     isValidContainer(container),
     'Target container is not a DOM element.',
   );
-  if (__DEV__) {
+  if (__DEV__) { // __DEV__ 如何起作用？
     const isModernRoot =
       isContainerMarkedAsRoot(container) &&
       container._reactRootContainer === undefined;

@@ -389,6 +389,7 @@ export function getCurrentTime() {
   return now();
 }
 
+// 有多少种 lane？
 export function requestUpdateLane(fiber: Fiber): Lane {
   // Special cases
   const mode = fiber.mode;
