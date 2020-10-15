@@ -176,7 +176,7 @@ function legacyRenderSubtreeIntoContainer(
   parentComponent: ?React$Component<any, any>,
   children: ReactNodeList,
   container: Container,
-  forceHydrate: boolean, // 作用？
+  forceHydrate: boolean, // 需要注解作用
   callback: ?Function,
 ) {
   if (__DEV__) {
@@ -194,7 +194,7 @@ function legacyRenderSubtreeIntoContainer(
       container,
       forceHydrate,
     );
-    fiberRoot = root._internalRoot; // 作用？
+    fiberRoot = root._internalRoot;
     if (typeof callback === 'function') {
       const originalCallback = callback;
       callback = function() {

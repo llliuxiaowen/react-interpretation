@@ -62,6 +62,10 @@ Component.prototype.setState = function(partialState, callback) {
     'setState(...): takes an object of state variables to update or a ' +
       'function which returns an object of state variables.',
   );
+  // 需要注解：this.updater 在哪里挂载的？
+  // 定义的位置是：packages/react-reconciler/src/ReactFiberClassComponent.old.js/
+  // classComponentUpdater/enqueueSetState
+  // 该操作实际上是在 fiber 上创建 Update，然后进入调度阶段
   this.updater.enqueueSetState(this, partialState, callback, 'setState');
 };
 
