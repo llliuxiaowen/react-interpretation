@@ -295,7 +295,9 @@ export function render(
     isValidContainer(container),
     'Target container is not a DOM element.',
   );
-  if (__DEV__) { // __DEV__ 如何起作用？
+  // 注解：__DEV__ 如何起作用？
+  // 在 CommonJS 构建中，转化成 process.env.NODE_ENV !== 'production'
+  if (__DEV__) {
     const isModernRoot =
       isContainerMarkedAsRoot(container) &&
       container._reactRootContainer === undefined;
