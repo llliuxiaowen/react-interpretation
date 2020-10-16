@@ -5,10 +5,28 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
     <div id="container"></div>
     <script type="text/babel">
-      ReactDOM.render(
-        <h1>Hello World!</h1>,
-        document.getElementById('container')
-      );
+      class App extends React.Component {
+        state = {
+          count: 0,
+        };
+
+        add = () => {
+          this.setState({count: ++this.state.count});
+        };
+
+        render() {
+          const {count} = this.state;
+
+          return (
+            <div>
+              <span>{`count to debug setState: ${count}`}</span>
+              <button onClick={this.add}>increase</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('container'));
     </script>
   </body>
 </html>

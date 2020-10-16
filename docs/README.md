@@ -18,10 +18,9 @@
 根据 react 官方[贡献流程](https://zh-hans.reactjs.org/docs/how-to-contribute.html)可知，
 > 想测试你做出的更改的话，最简单的方法就是运行 `yarn build react/index,react-dom/index --type=UMD`，之后再打开 `fixtures/packaging/babel-standalone/dev.html`，该文件已使用 `build` 文件夹内的 `react.development.js` 来搞定你的更改。
 
-// TODO: how to debug other code
-改过 debugger 位置后重新 build 即可，以上方法可以 debug `ReactDOM.render()` 全流程，但是如何 debug 其他特性如 `setState` 还不清楚。
-
-另：代码中标注 `需要注解` 的是我还不理解的
+注意：
+- 在源码中改过 debugger 位置后需要重新 build；
+- 在 `fixtures/packaging/babel-standalone/dev.html` 中可以使用 React、ReactDOM 中的各方法，因此可自己写 demo 去 debug `setState` 等。 :tada:
 
 # vscode 中的准备工作
 1. 安装扩展 `Flow Language Support`，这样就有类型提示了
