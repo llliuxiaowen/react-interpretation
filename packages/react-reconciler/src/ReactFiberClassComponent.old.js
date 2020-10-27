@@ -194,9 +194,9 @@ const classComponentUpdater = {
   isMounted,
   enqueueSetState(inst, payload, callback) {
     // 需要注解：为什么 forceUpdate 的参数中没有 payload？
-    const fiber = getInstance(inst);
+    const fiber = getInstance(inst); // return inst._reactInternals
     const eventTime = requestEventTime();
-    const lane = requestUpdateLane(fiber);
+    const lane = requestUpdateLane(fiber); // return SyncLane
 
     const update = createUpdate(eventTime, lane);
     // 在 forceUpdate 中多一步：update.tag = ForceUpdate;
