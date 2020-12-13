@@ -389,13 +389,18 @@ export function getCurrentTime() {
   return now();
 }
 
-// 有多少种 lane？
+// return SyncLane / SyncBatchedLane
 export function requestUpdateLane(fiber: Fiber): Lane {
   // Special cases
   const mode = fiber.mode;
+  // 下面的判定条件存疑
   if ((mode & BlockingMode) === NoMode) {
+    // BlockingMode = 0b00010，mode !== 0b0001x 时符合条件
+    // 但根据已定义的六种 mode 看，mode !== BlockingMode 时符合条件
     return (SyncLane: Lane);
   } else if ((mode & ConcurrentMode) === NoMode) {
+    // ConcurrentMode = 0b00100，mode !== 0b001xx 时符合条件
+    // 但根据已定义的六种 mode 和上一个条件看，符合条件的只有 mode === BlockingMode
     return getCurrentPriorityLevel() === ImmediateSchedulerPriority
       ? (SyncLane: Lane)
       : (SyncBatchedLane: Lane);

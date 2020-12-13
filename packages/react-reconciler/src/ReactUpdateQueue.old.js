@@ -195,7 +195,6 @@ export function createUpdate(eventTime: number, lane: Lane): Update<*> {
   return update;
 }
 
-// 需要注解：update tag 的不同对调度有什么影响？
 export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
   const updateQueue = fiber.updateQueue;
   if (updateQueue === null) {

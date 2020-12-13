@@ -17,11 +17,13 @@ Q: 假设 partialState 是 { count: 1 }，还未执行 ``enqueueSetState``  这�
 
 
 
+Q: `enqueueUpdate(fiber, update)` 中如果 `fiber.updateQueue.shared.pending === null`，则 `update.next = update`，此时构造了死循环，why???
+
+
+
 其他无关问题，重点看的时候再整理到单独的文档：
 
 1. 关键数据结构：Fiber Update
+   - updateQueue.shared 是做什么的
+   - updateQueue.shared.pending 是做什么的
 2. Fiber 的 updateQueue 为什么是个 object？一个队列为什么不是个数组呢？？？
-
-
-
-打算先看关键数据结构 Fiber Update。

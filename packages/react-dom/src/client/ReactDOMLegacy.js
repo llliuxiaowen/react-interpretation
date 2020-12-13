@@ -176,7 +176,7 @@ function legacyRenderSubtreeIntoContainer(
   parentComponent: ?React$Component<any, any>,
   children: ReactNodeList,
   container: Container,
-  forceHydrate: boolean, // 需要注解作用
+  forceHydrate: boolean,
   callback: ?Function,
 ) {
   if (__DEV__) {
@@ -186,15 +186,18 @@ function legacyRenderSubtreeIntoContainer(
 
   // TODO: Without `any` type, Flow says "Property cannot be accessed on any
   // member of intersection type." Whyyyyyy.
+  // 第一次执行时，container 肯定没有 _reactRootContainer 属性，所以 root 为 undefined
   let root: RootType = (container._reactRootContainer: any);
   let fiberRoot;
   if (!root) {
     // Initial mount
+    // 主要是在 container 上挂些什么属性
     root = container._reactRootContainer = legacyCreateRootFromDOMContainer(
       container,
       forceHydrate,
     );
     fiberRoot = root._internalRoot;
+    // 在使用 ReactDOM.render() 时很少使用到 callback
     if (typeof callback === 'function') {
       const originalCallback = callback;
       callback = function() {

@@ -19,6 +19,10 @@ TIPS:
 - 在源码中改过 debugger 位置后需要重新 build；
 - 在 `fixtures/packaging/babel-standalone/dev.html` 中可以直接使用 React、ReactDOM 中的各方法。 :tada:
 
+# 文档
+## [JSX 和 React.createElement 源码分析](../docs/JSX-and-ReactElement.md)
+## [ReactDOM.render 源码分析](../docs/ReactDOM-render.md)
+
 # 重要概念
 ## Fiber
 它的主要目标是：
